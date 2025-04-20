@@ -152,3 +152,7 @@ func _on_start_button_pressed() -> void:
 	flyover_player.stop()
 	intro_player.play()
 	start_button.disabled = true
+
+
+func _on_reset_button_pressed() -> void:
+	get_tree().reload_current_scene()

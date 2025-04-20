@@ -15,6 +15,10 @@ run/main_scene="uid://jo1lu66y1gx6"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Twitch="*res://twitch.tscn"
+
 [display]
 
 window/stretch/mode="canvas_items"

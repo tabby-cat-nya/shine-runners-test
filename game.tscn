@@ -61,7 +61,7 @@ music_player = NodePath("MusicPlayer")
 win_player = NodePath("WinMusic")
 flyover_player = NodePath("Flyover")
 intro_player = NodePath("IntroPlayer")
-start_button = NodePath("GameUI/Button")
+start_button = NodePath("GameUI/StartButton")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -319,13 +319,21 @@ text = "Scoreboard"
 [node name="scorecard_container" type="VBoxContainer" parent="GameUI/Scoreboard/VBoxContainer"]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="GameUI"]
+[node name="StartButton" type="Button" parent="GameUI"]
 layout_mode = 0
 offset_left = 132.0
 offset_top = 97.0
 offset_right = 228.0
 offset_bottom = 128.0
 text = "Start Game"
+
+[node name="ResetButton" type="Button" parent="GameUI"]
+layout_mode = 0
+offset_left = 170.0
+offset_top = -125.0
+offset_right = 228.0
+offset_bottom = -94.0
+text = "Reset"
 
 [node name="PlayerSpawns" type="Node2D" parent="."]
 
@@ -474,5 +482,6 @@ stream = ExtResource("7_j5wjh")
 volume_db = -20.037
 autoplay = true
 
-[connection signal="pressed" from="GameUI/Button" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="GameUI/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="GameUI/ResetButton" to="." method="_on_reset_button_pressed"]
 [connection signal="finished" from="IntroPlayer" to="." method="_on_intro_player_finished"]

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cg12qp1rk55ai"]
+
+[ext_resource type="Script" uid="uid://damxpifvhhb78" path="res://twitch.gd" id="1_xmflv"]
+
+[node name="Twitch" type="Node"]
+script = ExtResource("1_xmflv")
