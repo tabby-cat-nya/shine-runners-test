@@ -23,6 +23,10 @@ var players : Array[Player]
 @export var game_timer_label : Label
 @export var chime_player : AudioStreamPlayer
 @export var music_player : AudioStreamPlayer
+@export var win_player : AudioStreamPlayer
+@export var flyover_player : AudioStreamPlayer
+@export var intro_player : AudioStreamPlayer
+@export var start_button : Button
 
 var state : State = State.prep
 var game_timer : float = 0
@@ -92,7 +96,7 @@ func _process(delta: float) -> void:
 		chime_player.play(0.9)
 
 func elim_players():
-	var lowestScore : int = 10
+	var lowestScore : int = 99999
 	var highestScore : int = 0
 	for player in players:
 		if player.score < lowestScore and player.alive:
@@ -104,6 +108,16 @@ func elim_players():
 			player.alive = false
 	elim_timer = 30
 	play_next_chime = 5
+	check_win_con()
+
+func check_win_con():
+	var gamers : int = 0
+	for player in players:
+		if player.alive:
+			gamers += 1
+	if gamers == 1:
+		music_player.stop()
+		win_player.play()
 
 func update_ui():
 	elim_timer_label.text = format_time(elim_timer, false)
@@ -129,5 +143,12 @@ func _on_intro_player_finished() -> void:
 	state = State.game
 	music_player.play()
 	for player in players:
+		player.lifetime = 0
 		player.start_engine()
 	
+
+
+func _on_start_button_pressed() -> void:
+	flyover_player.stop()
+	intro_player.play()
+	start_button.disabled = true

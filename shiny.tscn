@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://1ylm3yb3weq8" path="res://sprites/shiny.png" id="1_0iabg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yl8uo"]
-radius = 6.0
+radius = 2.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0cndc"]
 radius = 7.0

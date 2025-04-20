@@ -1,10 +1,12 @@
-[gd_scene load_steps=19 format=3 uid="uid://jo1lu66y1gx6"]
+[gd_scene load_steps=21 format=3 uid="uid://jo1lu66y1gx6"]
 
 [ext_resource type="Texture2D" uid="uid://i348o6hqw2dn" path="res://sprites/44389.png" id="1_e2o6t"]
 [ext_resource type="Script" uid="uid://5qnvkmmtxsw2" path="res://gameManager.gd" id="1_feb5d"]
+[ext_resource type="AudioStream" uid="uid://cyyivtye4ngmt" path="res://music/90. Multiplayer Results - Win.mp3" id="3_eow3j"]
 [ext_resource type="AudioStream" uid="uid://ck06glyqpqy3n" path="res://Battle Mode - Mario Kart DS OST Extended.mp3" id="3_feb5d"]
 [ext_resource type="AudioStream" uid="uid://igps611ecoc" path="res://0014.wav" id="4_fc0e3"]
 [ext_resource type="AudioStream" uid="uid://xnhjht3k7qvd" path="res://music/intro.mp3" id="5_7jktm"]
+[ext_resource type="AudioStream" uid="uid://b7v7bcgp3iu8u" path="res://music/85. Battle Flyover.mp3" id="7_j5wjh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_feb5d"]
 size = Vector2(16, 254)
@@ -45,7 +47,7 @@ font_color = Color(0.481789, 0.481789, 0.481789, 1)
 [sub_resource type="CircleShape2D" id="CircleShape2D_7jktm"]
 radius = 3.0
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("player_spawns_nodes", "starting_shine_nodes", "shine_nodes", "scorecard_container", "elim_timer_label", "game_timer_label", "chime_player", "music_player")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("player_spawns_nodes", "starting_shine_nodes", "shine_nodes", "scorecard_container", "elim_timer_label", "game_timer_label", "chime_player", "music_player", "win_player", "flyover_player", "intro_player", "start_button")]
 script = ExtResource("1_feb5d")
 max_shinies = 100
 player_spawns_nodes = NodePath("PlayerSpawns")
@@ -56,6 +58,10 @@ elim_timer_label = NodePath("GameUI/ElimTimer")
 game_timer_label = NodePath("GameUI/GameTimer")
 chime_player = NodePath("Chimer")
 music_player = NodePath("MusicPlayer")
+win_player = NodePath("WinMusic")
+flyover_player = NodePath("Flyover")
+intro_player = NodePath("IntroPlayer")
+start_button = NodePath("GameUI/Button")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -313,6 +319,14 @@ text = "Scoreboard"
 [node name="scorecard_container" type="VBoxContainer" parent="GameUI/Scoreboard/VBoxContainer"]
 layout_mode = 2
 
+[node name="Button" type="Button" parent="GameUI"]
+layout_mode = 0
+offset_left = 132.0
+offset_top = 97.0
+offset_right = 228.0
+offset_bottom = 128.0
+text = "Start Game"
+
 [node name="PlayerSpawns" type="Node2D" parent="."]
 
 [node name="Point" type="CollisionShape2D" parent="PlayerSpawns"]
@@ -439,6 +453,10 @@ position = Vector2(-67, 0)
 shape = SubResource("CircleShape2D_7jktm")
 debug_color = Color(0.623589, 0.532808, 0, 0.42)
 
+[node name="WinMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_eow3j")
+volume_db = -19.083
+
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_feb5d")
 volume_db = -20.0
@@ -450,6 +468,11 @@ stream = ExtResource("4_fc0e3")
 [node name="IntroPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_7jktm")
 volume_db = -18.128
+
+[node name="Flyover" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_j5wjh")
+volume_db = -20.037
 autoplay = true
 
+[connection signal="pressed" from="GameUI/Button" to="." method="_on_start_button_pressed"]
 [connection signal="finished" from="IntroPlayer" to="." method="_on_intro_player_finished"]
