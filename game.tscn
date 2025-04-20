@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://jo1lu66y1gx6"]
+[gd_scene load_steps=18 format=3 uid="uid://jo1lu66y1gx6"]
 
 [ext_resource type="Texture2D" uid="uid://i348o6hqw2dn" path="res://sprites/44389.png" id="1_e2o6t"]
 [ext_resource type="Script" uid="uid://5qnvkmmtxsw2" path="res://gameManager.gd" id="1_feb5d"]
 [ext_resource type="AudioStream" uid="uid://ck06glyqpqy3n" path="res://Battle Mode - Mario Kart DS OST Extended.mp3" id="3_feb5d"]
+[ext_resource type="AudioStream" uid="uid://igps611ecoc" path="res://0014.wav" id="4_fc0e3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_feb5d"]
 size = Vector2(16, 254)
@@ -43,15 +44,17 @@ font_color = Color(0.481789, 0.481789, 0.481789, 1)
 [sub_resource type="CircleShape2D" id="CircleShape2D_7jktm"]
 radius = 3.0
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("player_spawns_nodes", "starting_shine_nodes", "shine_nodes", "scorecard_container", "elim_timer_label", "game_timer_label")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("player_spawns_nodes", "starting_shine_nodes", "shine_nodes", "scorecard_container", "elim_timer_label", "game_timer_label", "chime_player")]
 script = ExtResource("1_feb5d")
 shyguy_mode = true
+max_shinies = 16
 player_spawns_nodes = NodePath("PlayerSpawns")
 starting_shine_nodes = NodePath("StartingShineLocations")
 shine_nodes = NodePath("ShineLocations")
 scorecard_container = NodePath("GameUI/Scoreboard/VBoxContainer/scorecard_container")
 elim_timer_label = NodePath("GameUI/ElimTimer")
 game_timer_label = NodePath("GameUI/GameTimer")
+chime_player = NodePath("Chimer")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -440,3 +443,6 @@ stream = ExtResource("3_feb5d")
 volume_db = -20.0
 autoplay = true
 parameters/looping = true
+
+[node name="Chimer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_fc0e3")

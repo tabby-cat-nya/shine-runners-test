@@ -1,9 +1,11 @@
 extends Node2D
+class_name GM
 
 @export var shyguy_mode : bool
+@export var max_shinies : int = 9
 var player_spawns : Array[Node]
 var starting_shine_spawns : Array[Node]
-var shine_spawns : Array[Node]
+static var shine_spawns : Array[Node]
 var players : Array[Player]
 
 @export_group("Node References")
@@ -13,9 +15,14 @@ var players : Array[Player]
 @export var scorecard_container : VBoxContainer 
 @export var elim_timer_label : Label
 @export var game_timer_label : Label
+@export var chime_player : AudioStreamPlayer
 
 var game_timer : float = 0
 var elim_timer : float = 60
+var shiny_spawn_timer : float = 5
+var shiny_count : int = 4
+var play_next_chime : float = 5
+
 
 func _ready() -> void:
 	player_spawns = player_spawns_nodes.get_children()
@@ -47,13 +54,47 @@ func spawnPlayer(id : int):
 func spawn_shinies():
 	for i in range(4):
 		var shiny = load("res://shiny.tscn").instantiate()
-		shiny.position = shine_spawns[i].position
+		shiny.position = starting_shine_spawns[i].position
 		add_child(shiny)
+
+func spawn_new_shiny():
+	var shiny = load("res://shiny.tscn").instantiate()
+	var ranPos = randi_range(0,shine_spawns.size()-1)
+	shiny.position = shine_spawns[ranPos].position
+	shiny_spawn_timer = 5
+	shiny_count += 1
+	add_child(shiny)
+	
+
 
 func _process(delta: float) -> void:
 	elim_timer -= delta
 	game_timer += delta
+	shiny_spawn_timer -= delta
+	if(shiny_spawn_timer<=0 and shiny_count < max_shinies):
+		spawn_new_shiny()
+	if(elim_timer <= 0):
+		elim_players()
 	update_ui()
+	
+	if elim_timer < play_next_chime:
+		if play_next_chime > 0:
+			play_next_chime -= 1
+		chime_player.play(0.9)
+
+func elim_players():
+	var lowestScore : int = 10
+	var highestScore : int = 0
+	for player in players:
+		if player.score < lowestScore and player.alive:
+			lowestScore = player.score
+		if player.score > highestScore and player.alive:
+			highestScore = player.score
+	for player in players:
+		if player.score == lowestScore and player.alive and player.score != highestScore:
+			player.alive = false
+	elim_timer = 30
+	play_next_chime = 5
 
 func update_ui():
 	elim_timer_label.text = format_time(elim_timer, false)
