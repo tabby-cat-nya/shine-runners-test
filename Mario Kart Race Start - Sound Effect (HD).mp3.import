@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c27abe2dhhok1"
+path="res://.godot/imported/Mario Kart Race Start - Sound Effect (HD).mp3-d1ec96e7e84451715534300088c258b8.mp3str"
+
+[deps]
+
+source_file="res://Mario Kart Race Start - Sound Effect (HD).mp3"
+dest_files=["res://.godot/imported/Mario Kart Race Start - Sound Effect (HD).mp3-d1ec96e7e84451715534300088c258b8.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

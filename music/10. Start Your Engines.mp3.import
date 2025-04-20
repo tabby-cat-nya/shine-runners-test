@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://hvjq6opt51gt"
+path="res://.godot/imported/10. Start Your Engines.mp3-331c564b06545f572b14605ea005397f.mp3str"
+
+[deps]
+
+source_file="res://music/10. Start Your Engines.mp3"
+dest_files=["res://.godot/imported/10. Start Your Engines.mp3-331c564b06545f572b14605ea005397f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

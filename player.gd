@@ -14,7 +14,10 @@ func _ready() -> void:
 	var direction : Vector2 = Vector2 (randf_range(-1,1), randf_range(-1,1))
 	
 	apply_force( direction.normalized() * start_speed)
+	
 	#animated_sprite.frame = frame
+
+
 
 func setup():
 	animated_sprite.frame = id
@@ -43,5 +46,6 @@ func _on_body_entered(body: Node) -> void:
 	if body.is_in_group("player") :
 		print("playersHit")
 		if(score > 0):
-			score -= 1
-			respawn_shiny()
+			#score -= 1
+			#respawn_shiny()
+			pass

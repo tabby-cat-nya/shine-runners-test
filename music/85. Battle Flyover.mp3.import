@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b7v7bcgp3iu8u"
+path="res://.godot/imported/85. Battle Flyover.mp3-bb667e09090601cdb56220faae5dfb66.mp3str"
+
+[deps]
+
+source_file="res://music/85. Battle Flyover.mp3"
+dest_files=["res://.godot/imported/85. Battle Flyover.mp3-bb667e09090601cdb56220faae5dfb66.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

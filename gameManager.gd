@@ -1,6 +1,12 @@
 extends Node2D
 class_name GM
 
+enum State {
+	prep,
+	game,
+	end
+}
+
 @export var shyguy_mode : bool
 @export var max_shinies : int = 9
 var player_spawns : Array[Node]
@@ -16,7 +22,9 @@ var players : Array[Player]
 @export var elim_timer_label : Label
 @export var game_timer_label : Label
 @export var chime_player : AudioStreamPlayer
+@export var music_player : AudioStreamPlayer
 
+var state : State = State.prep
 var game_timer : float = 0
 var elim_timer : float = 60
 var shiny_spawn_timer : float = 5
@@ -68,13 +76,14 @@ func spawn_new_shiny():
 
 
 func _process(delta: float) -> void:
-	elim_timer -= delta
-	game_timer += delta
-	shiny_spawn_timer -= delta
-	if(shiny_spawn_timer<=0 and shiny_count < max_shinies):
-		spawn_new_shiny()
-	if(elim_timer <= 0):
-		elim_players()
+	if(state == State.game):
+		elim_timer -= delta
+		game_timer += delta
+		shiny_spawn_timer -= delta
+		if(shiny_spawn_timer<=0 and shiny_count < max_shinies):
+			spawn_new_shiny()
+		if(elim_timer <= 0):
+			elim_players()
 	update_ui()
 	
 	if elim_timer < play_next_chime:
@@ -114,3 +123,11 @@ func format_time(time : float, include_minutes : bool) -> String:
 		return str(minutes).pad_zeros(2) +":"+ str(seconds).pad_zeros(2)+"."+str(millis_2dp).pad_zeros(2)
 	else:
 		return str(seconds).pad_zeros(2)+"."+str(millis_2dp).pad_zeros(2)
+
+
+func _on_intro_player_finished() -> void:
+	state = State.game
+	music_player.play()
+	#for player in players:
+		#player.start_engine()
+	
