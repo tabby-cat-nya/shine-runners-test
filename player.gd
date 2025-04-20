@@ -34,8 +34,8 @@ func _process(delta: float) -> void:
 	scorecard.score = score
 	scorecard.alive = alive
 	lifetime += delta
-	#if(linear_velocity.length() < 35 and lifetime > 3):
-		#linear_velocity *= 1.1
+	if(linear_velocity.length() < 35 and lifetime > 10):
+		linear_velocity *= 1.1
 	if(not alive):
 		modulate = Color("ffffff42")
 		contact_monitor = false
