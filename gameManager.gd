@@ -128,6 +128,6 @@ func format_time(time : float, include_minutes : bool) -> String:
 func _on_intro_player_finished() -> void:
 	state = State.game
 	music_player.play()
-	#for player in players:
-		#player.start_engine()
+	for player in players:
+		player.start_engine()
 	

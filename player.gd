@@ -5,19 +5,21 @@ var id : int = 0
 var score : int = 0
 var scorecard : Scorecard
 var alive : bool = true
+var lifetime : float = 0
 @export var start_speed = 100
 
 @export var animated_sprite : AnimatedSprite2D
 
 func _ready() -> void:
 	var frame : int = randi_range(0, animated_sprite.sprite_frames.get_frame_count("default")-1)
-	var direction : Vector2 = Vector2 (randf_range(-1,1), randf_range(-1,1))
 	
-	apply_force( direction.normalized() * start_speed)
 	
 	#animated_sprite.frame = frame
 
-
+func start_engine():
+	var direction : Vector2 = Vector2 (randf_range(-1,1), randf_range(-1,1))
+	
+	apply_force( direction.normalized() * start_speed)
 
 func setup():
 	animated_sprite.frame = id
@@ -31,8 +33,9 @@ func respawn_shiny():
 func _process(delta: float) -> void:
 	scorecard.score = score
 	scorecard.alive = alive
-	if(linear_velocity.length() < 35):
-		linear_velocity *= 1.1
+	lifetime += delta
+	#if(linear_velocity.length() < 35 and lifetime > 3):
+		#linear_velocity *= 1.1
 	if(not alive):
 		modulate = Color("ffffff42")
 		contact_monitor = false
