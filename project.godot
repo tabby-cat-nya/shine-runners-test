@@ -13,15 +13,20 @@ config_version=5
 config/name="Shine Runners Test"
 run/main_scene="uid://jo1lu66y1gx6"
 config/features=PackedStringArray("4.4", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://1ylm3yb3weq8"
 
 [autoload]
 
 Twitch="*res://twitch.tscn"
+VerySimpleTwitch="*res://addons/very-simple-twitch/twitch_node.gd"
 
 [display]
 
 window/stretch/mode="canvas_items"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/very-simple-twitch/plugin.cfg")
 
 [global_group]
 
