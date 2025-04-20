@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://cepndgsi3j3gn"]
+
+[ext_resource type="Script" uid="uid://cob4bhbo1shuc" path="res://shiny.gd" id="1_0cndc"]
+[ext_resource type="Texture2D" uid="uid://1ylm3yb3weq8" path="res://sprites/shiny.png" id="1_0iabg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yl8uo"]
+radius = 6.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0cndc"]
+radius = 7.0
+
+[node name="RigidBody2D" type="RigidBody2D"]
+gravity_scale = 0.0
+script = ExtResource("1_0cndc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_0iabg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_yl8uo")
+
+[node name="Shiny" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shiny"]
+shape = SubResource("CircleShape2D_0cndc")
+
+[connection signal="body_entered" from="Shiny" to="Shiny" method="_on_body_entered"]
+[connection signal="body_entered" from="Shiny" to="." method="_on_body_entered"]
