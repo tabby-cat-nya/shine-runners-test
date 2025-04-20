@@ -28,7 +28,7 @@ func respawn_shiny():
 	var shiny = load("res://shiny.tscn").instantiate()
 	var ranPos = randi_range(0,GM.shine_spawns.size()-1)
 	shiny.position = GM.shine_spawns[ranPos].position
-	get_tree().get_root().add_child(shiny)
+	get_tree().get_root().get_node("Game").add_child(shiny)
 
 func _process(delta: float) -> void:
 	scorecard.score = score
@@ -47,7 +47,7 @@ func _process(delta: float) -> void:
 func _on_body_entered(body: Node) -> void:
 	#print("mew")
 	if body.is_in_group("player") :
-		print("playersHit")
+		#print("playersHit")
 		if(score > 0):
 			#score -= 1
 			#respawn_shiny()

@@ -37,3 +37,7 @@ player=""
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+
+[very_simple_twitch]
+
+config/client_id="02idi95zrbbtrgw9k00yhbubp41lc2"

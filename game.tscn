@@ -3,8 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://i348o6hqw2dn" path="res://sprites/44389.png" id="1_e2o6t"]
 [ext_resource type="Script" uid="uid://5qnvkmmtxsw2" path="res://gameManager.gd" id="1_feb5d"]
 [ext_resource type="AudioStream" uid="uid://cyyivtye4ngmt" path="res://music/90. Multiplayer Results - Win.mp3" id="3_eow3j"]
-[ext_resource type="AudioStream" uid="uid://ck06glyqpqy3n" path="res://Battle Mode - Mario Kart DS OST Extended.mp3" id="3_feb5d"]
-[ext_resource type="AudioStream" uid="uid://igps611ecoc" path="res://0014.wav" id="4_fc0e3"]
+[ext_resource type="AudioStream" uid="uid://ck06glyqpqy3n" path="res://music/Battle Mode - Mario Kart DS OST Extended.mp3" id="3_feb5d"]
+[ext_resource type="AudioStream" uid="uid://igps611ecoc" path="res://music/0014.wav" id="4_fc0e3"]
 [ext_resource type="AudioStream" uid="uid://xnhjht3k7qvd" path="res://music/intro.mp3" id="5_7jktm"]
 [ext_resource type="AudioStream" uid="uid://b7v7bcgp3iu8u" path="res://music/85. Battle Flyover.mp3" id="7_j5wjh"]
 
@@ -49,6 +49,7 @@ radius = 3.0
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("player_spawns_nodes", "starting_shine_nodes", "shine_nodes", "scorecard_container", "elim_timer_label", "game_timer_label", "chime_player", "music_player", "win_player", "flyover_player", "intro_player", "start_button")]
 script = ExtResource("1_feb5d")
+autoplay_mode = true
 max_shinies = 100
 player_spawns_nodes = NodePath("PlayerSpawns")
 starting_shine_nodes = NodePath("StartingShineLocations")

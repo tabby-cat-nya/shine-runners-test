@@ -8,11 +8,15 @@ enum State {
 }
 
 @export var shyguy_mode : bool
+@export var autoplay_mode : bool = false
 @export var max_shinies : int = 9
 var player_spawns : Array[Node]
 var starting_shine_spawns : Array[Node]
 static var shine_spawns : Array[Node]
 var players : Array[Player]
+var autoplay_timer : float = 20
+var autoreset_timer : float = 20
+var bets_closed : bool = false
 
 @export_group("Node References")
 @export var player_spawns_nodes : Node2D
@@ -80,9 +84,20 @@ func spawn_new_shiny():
 
 
 func _process(delta: float) -> void:
+	if (state == State.prep and autoplay_mode):
+		autoplay_timer -= delta
+		if autoplay_timer <= 0 and not bets_closed:
+			bets_closed = true
+			autoplay_timer == 0
+			_on_start_button_pressed()
+	if (state == State.end and autoplay_mode):
+		autoreset_timer -= delta
+		if autoreset_timer <= 0:
+			_on_reset_button_pressed()
 	if(state == State.game):
 		elim_timer -= delta
 		game_timer += delta
+		
 		shiny_spawn_timer -= delta
 		if(shiny_spawn_timer<=0 and shiny_count < max_shinies):
 			spawn_new_shiny()
@@ -118,10 +133,15 @@ func check_win_con():
 	if gamers == 1:
 		music_player.stop()
 		win_player.play()
+		state = State.end
 
 func update_ui():
 	elim_timer_label.text = format_time(elim_timer, false)
 	game_timer_label.text = format_time(game_timer, true)
+	if (state == State.prep and autoplay_mode and not bets_closed):
+		elim_timer_label.text = "Bets close: " + format_time(autoplay_timer, false)
+	if (state == State.end and autoplay_mode):
+		elim_timer_label.text = "New round: " + format_time(autoreset_timer, false)
 	order_scoreboard()
 
 func order_scoreboard():

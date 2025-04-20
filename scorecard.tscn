@@ -25,6 +25,7 @@ dead_texture = ExtResource("3_lb3t7")
 
 [node name="Back" type="TextureRect" parent="."]
 show_behind_parent = true
+layout_mode = 0
 offset_right = 58.0
 offset_bottom = 23.0
 texture = ExtResource("3_lb3t7")

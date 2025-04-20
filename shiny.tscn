@@ -24,5 +24,5 @@ shape = SubResource("CircleShape2D_yl8uo")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Shiny"]
 shape = SubResource("CircleShape2D_0cndc")
 
-[connection signal="body_entered" from="Shiny" to="Shiny" method="_on_body_entered"]
 [connection signal="body_entered" from="Shiny" to="." method="_on_body_entered"]
+[connection signal="body_entered" from="Shiny" to="Shiny" method="_on_body_entered"]
