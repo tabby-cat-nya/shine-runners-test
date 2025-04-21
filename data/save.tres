@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Save" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://twitch/player_data.gd" id="1_yphdo"]
+[ext_resource type="Script" path="res://twitch/saveFile.gd" id="2_o22i5"]
+
+[sub_resource type="Resource" id="Resource_hxy0q"]
+script = ExtResource("1_yphdo")
+money = 130
+user_id = "144628425"
+username = "tabbyCatNya"
+
+[resource]
+script = ExtResource("2_o22i5")
+player_database = Array[ExtResource("1_yphdo")]([SubResource("Resource_hxy0q")])

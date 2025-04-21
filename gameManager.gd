@@ -31,6 +31,7 @@ var bets_closed : bool = false
 @export var flyover_player : AudioStreamPlayer
 @export var intro_player : AudioStreamPlayer
 @export var start_button : Button
+@export var user_cards : VBoxContainer
 
 var state : State = State.prep
 var game_timer : float = 0
@@ -41,11 +42,14 @@ var play_next_chime : float = 5
 
 
 func _ready() -> void:
+	Twitch.load_database()
+	Twitch.game_node = self
 	player_spawns = player_spawns_nodes.get_children()
 	starting_shine_spawns = starting_shine_nodes.get_children()
 	shine_spawns = shine_nodes.get_children()
 	createPlayers()
 	spawn_shinies()
+	load_userboard()
 
 func createPlayers():
 	for i in range(8):
@@ -104,6 +108,7 @@ func _process(delta: float) -> void:
 		if(elim_timer <= 0):
 			elim_players()
 	update_ui()
+	update_userboard()
 	
 	if elim_timer < play_next_chime:
 		if play_next_chime > 0:
@@ -127,13 +132,16 @@ func elim_players():
 
 func check_win_con():
 	var gamers : int = 0
+	var winning_gamer : int = 0
 	for player in players:
 		if player.alive:
 			gamers += 1
+			winning_gamer = player.id
 	if gamers == 1:
 		music_player.stop()
 		win_player.play()
 		state = State.end
+		Twitch.end_round(winning_gamer)
 
 func update_ui():
 	elim_timer_label.text = format_time(elim_timer, false)
@@ -147,6 +155,7 @@ func update_ui():
 func order_scoreboard():
 	pass
 	
+
 
 func format_time(time : float, include_minutes : bool) -> String:
 	var minutes : int = floor(time / 60)
@@ -176,3 +185,17 @@ func _on_start_button_pressed() -> void:
 
 func _on_reset_button_pressed() -> void:
 	get_tree().reload_current_scene()
+	
+
+func load_userboard():
+	for child in user_cards.get_children():
+		child.queue_free()
+	for data : PlayerData in Twitch.save.player_database:
+		if data.playing:
+			var user = load("res://twitch/user.tscn").instantiate()
+			user.player_data = data
+			user_cards.add_child(user)
+
+func update_userboard():
+	#load_userboard()
+	pass

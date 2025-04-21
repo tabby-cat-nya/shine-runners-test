@@ -32,6 +32,11 @@ enabled=PackedStringArray("res://addons/very-simple-twitch/plugin.cfg")
 
 player=""
 
+[gui]
+
+theme/default_font_multichannel_signed_distance_field=true
+theme/default_font_generate_mipmaps=true
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

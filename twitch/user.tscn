@@ -1,0 +1,71 @@
+[gd_scene load_steps=6 format=3 uid="uid://bxux4tsgmw0sf"]
+
+[ext_resource type="Script" uid="uid://byifxe3bjukcb" path="res://twitch/userCard.gd" id="1_05vio"]
+[ext_resource type="SpriteFrames" uid="uid://c7ceeyn5e3kgr" path="res://playerSprites.tres" id="1_xl4je"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_05vio"]
+font_size = 6
+
+[sub_resource type="LabelSettings" id="LabelSettings_xl4je"]
+font_size = 6
+
+[sub_resource type="LabelSettings" id="LabelSettings_62tkp"]
+font_size = 6
+
+[node name="User" type="PanelContainer" node_paths=PackedStringArray("displayname_label", "bank_label", "bet_sprite", "wager_label")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1037.0
+offset_bottom = -637.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_05vio")
+displayname_label = NodePath("HBoxContainer/displayname")
+bank_label = NodePath("HBoxContainer/bank")
+bet_sprite = NodePath("HBoxContainer/bet")
+wager_label = NodePath("HBoxContainer/wager")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Control" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="displayname" type="Label" parent="HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Name"
+label_settings = SubResource("LabelSettings_05vio")
+text_overrun_behavior = 3
+
+[node name="bank" type="Label" parent="HBoxContainer"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Bank"
+label_settings = SubResource("LabelSettings_xl4je")
+horizontal_alignment = 1
+clip_text = true
+
+[node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Node" type="Control" parent="HBoxContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="bet" type="AnimatedSprite2D" parent="HBoxContainer"]
+position = Vector2(94.5, 4)
+scale = Vector2(0.714286, 0.714286)
+sprite_frames = ExtResource("1_xl4je")
+frame = 11
+
+[node name="wager" type="Label" parent="HBoxContainer"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+text = "Wager"
+label_settings = SubResource("LabelSettings_62tkp")
+clip_text = true

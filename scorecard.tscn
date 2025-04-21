@@ -40,3 +40,4 @@ offset_left = 37.0
 offset_right = 56.0
 offset_bottom = 23.0
 text = "00"
+horizontal_alignment = 1

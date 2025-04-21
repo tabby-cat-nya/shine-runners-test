@@ -1,9 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://jo1lu66y1gx6"]
+[gd_scene load_steps=22 format=3 uid="uid://jo1lu66y1gx6"]
 
 [ext_resource type="Texture2D" uid="uid://i348o6hqw2dn" path="res://sprites/44389.png" id="1_e2o6t"]
 [ext_resource type="Script" uid="uid://5qnvkmmtxsw2" path="res://gameManager.gd" id="1_feb5d"]
 [ext_resource type="AudioStream" uid="uid://cyyivtye4ngmt" path="res://music/90. Multiplayer Results - Win.mp3" id="3_eow3j"]
 [ext_resource type="AudioStream" uid="uid://ck06glyqpqy3n" path="res://music/Battle Mode - Mario Kart DS OST Extended.mp3" id="3_feb5d"]
+[ext_resource type="PackedScene" uid="uid://bxux4tsgmw0sf" path="res://twitch/user.tscn" id="3_j5wjh"]
 [ext_resource type="AudioStream" uid="uid://igps611ecoc" path="res://music/0014.wav" id="4_fc0e3"]
 [ext_resource type="AudioStream" uid="uid://xnhjht3k7qvd" path="res://music/intro.mp3" id="5_7jktm"]
 [ext_resource type="AudioStream" uid="uid://b7v7bcgp3iu8u" path="res://music/85. Battle Flyover.mp3" id="7_j5wjh"]
@@ -47,7 +48,7 @@ font_color = Color(0.481789, 0.481789, 0.481789, 1)
 [sub_resource type="CircleShape2D" id="CircleShape2D_7jktm"]
 radius = 3.0
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("player_spawns_nodes", "starting_shine_nodes", "shine_nodes", "scorecard_container", "elim_timer_label", "game_timer_label", "chime_player", "music_player", "win_player", "flyover_player", "intro_player", "start_button")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("player_spawns_nodes", "starting_shine_nodes", "shine_nodes", "scorecard_container", "elim_timer_label", "game_timer_label", "chime_player", "music_player", "win_player", "flyover_player", "intro_player", "start_button", "user_cards")]
 script = ExtResource("1_feb5d")
 autoplay_mode = true
 max_shinies = 100
@@ -63,6 +64,7 @@ win_player = NodePath("WinMusic")
 flyover_player = NodePath("Flyover")
 intro_player = NodePath("IntroPlayer")
 start_button = NodePath("GameUI/StartButton")
+user_cards = NodePath("GameUI/Users/userCards")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -335,6 +337,41 @@ offset_top = -125.0
 offset_right = 228.0
 offset_bottom = -94.0
 text = "Reset"
+
+[node name="Users" type="Control" parent="GameUI"]
+anchors_preset = 0
+offset_left = 124.0
+offset_top = -87.0
+offset_right = 223.0
+offset_bottom = 86.0
+
+[node name="userCards" type="VBoxContainer" parent="GameUI/Users"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -5.0
+offset_top = -6.0
+offset_right = 20.0
+offset_bottom = 42.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.84, 0.84)
+
+[node name="User" parent="GameUI/Users/userCards" instance=ExtResource("3_j5wjh")]
+layout_mode = 2
+
+[node name="User2" parent="GameUI/Users/userCards" instance=ExtResource("3_j5wjh")]
+layout_mode = 2
+
+[node name="User3" parent="GameUI/Users/userCards" instance=ExtResource("3_j5wjh")]
+layout_mode = 2
+
+[node name="User4" parent="GameUI/Users/userCards" instance=ExtResource("3_j5wjh")]
+layout_mode = 2
+
+[node name="User5" parent="GameUI/Users/userCards" instance=ExtResource("3_j5wjh")]
+layout_mode = 2
 
 [node name="PlayerSpawns" type="Node2D" parent="."]
 
