@@ -45,6 +45,12 @@ func create_new_player(id : String, name : String) -> PlayerData:
 	save.player_database.append(player)
 	return player
 
+func start_round():
+	for data in save.player_database:
+		if data.money < 100:
+			data.money = clampi(data.money + 5, 0, 100)
+
+
 func end_round(winning_character : int):
 	current_winner = winning_character
 	for data in save.player_database:

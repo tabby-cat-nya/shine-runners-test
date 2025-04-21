@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id="Resource_hxy0q"]
 script = ExtResource("1_yphdo")
-money = 130
+money = 95
 user_id = "144628425"
 username = "tabbyCatNya"
 

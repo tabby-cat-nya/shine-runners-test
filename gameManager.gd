@@ -50,6 +50,7 @@ func _ready() -> void:
 	createPlayers()
 	spawn_shinies()
 	load_userboard()
+	Twitch.start_round()
 
 func createPlayers():
 	for i in range(8):
