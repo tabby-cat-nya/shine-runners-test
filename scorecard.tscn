@@ -1,11 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://cp2t5xc2yk3q4"]
+[gd_scene load_steps=6 format=3 uid="uid://cp2t5xc2yk3q4"]
 
 [ext_resource type="Script" uid="uid://ddafqftfujtry" path="res://scorecard.gd" id="1_hcikf"]
 [ext_resource type="Texture2D" uid="uid://77quibtjcvca" path="res://sprites/scorecard.png" id="1_l1cy6"]
 [ext_resource type="SpriteFrames" uid="uid://c7ceeyn5e3kgr" path="res://playerSprites.tres" id="3_hcikf"]
 [ext_resource type="Texture2D" uid="uid://b4ffkmx1xbr7e" path="res://sprites/scorecard - white.png" id="3_lb3t7"]
 
-[node name="Scorecard" type="Control" node_paths=PackedStringArray("score_label", "sprite", "back")]
+[sub_resource type="LabelSettings" id="LabelSettings_lb3t7"]
+font_size = 8
+
+[node name="Scorecard" type="Control" node_paths=PackedStringArray("score_label", "sprite", "back", "command_label")]
 self_modulate = Color(0.879205, 0.000618961, 0.879199, 1)
 custom_minimum_size = Vector2(0, 23)
 layout_mode = 3
@@ -22,6 +25,7 @@ sprite = NodePath("PlayerSprite")
 back = NodePath("Back")
 alive_texture = ExtResource("1_l1cy6")
 dead_texture = ExtResource("3_lb3t7")
+command_label = NodePath("command")
 
 [node name="Back" type="TextureRect" parent="."]
 show_behind_parent = true
@@ -41,3 +45,12 @@ offset_right = 56.0
 offset_bottom = 23.0
 text = "00"
 horizontal_alignment = 1
+
+[node name="command" type="Label" parent="."]
+layout_mode = 0
+offset_left = 61.0
+offset_top = 5.0
+offset_right = 97.0
+offset_bottom = 18.0
+text = "!bet ___ ?"
+label_settings = SubResource("LabelSettings_lb3t7")

@@ -32,6 +32,7 @@ var bets_closed : bool = false
 @export var intro_player : AudioStreamPlayer
 @export var start_button : Button
 @export var user_cards : VBoxContainer
+@export var instructions : Label
 
 var state : State = State.prep
 var game_timer : float = 0
@@ -175,6 +176,7 @@ func _on_intro_player_finished() -> void:
 	for player in players:
 		player.lifetime = 0
 		player.start_engine()
+	instructions.text = "Bets closed!"
 	
 
 

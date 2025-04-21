@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://jo1lu66y1gx6"]
+[gd_scene load_steps=23 format=3 uid="uid://jo1lu66y1gx6"]
 
 [ext_resource type="Texture2D" uid="uid://i348o6hqw2dn" path="res://sprites/44389.png" id="1_e2o6t"]
 [ext_resource type="Script" uid="uid://5qnvkmmtxsw2" path="res://gameManager.gd" id="1_feb5d"]
@@ -45,12 +45,14 @@ size = Vector2(3, 22)
 [sub_resource type="LabelSettings" id="LabelSettings_feb5d"]
 font_color = Color(0.481789, 0.481789, 0.481789, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_j5wjh"]
+font_size = 9
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_7jktm"]
 radius = 3.0
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("player_spawns_nodes", "starting_shine_nodes", "shine_nodes", "scorecard_container", "elim_timer_label", "game_timer_label", "chime_player", "music_player", "win_player", "flyover_player", "intro_player", "start_button", "user_cards")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("player_spawns_nodes", "starting_shine_nodes", "shine_nodes", "scorecard_container", "elim_timer_label", "game_timer_label", "chime_player", "music_player", "win_player", "flyover_player", "intro_player", "start_button", "user_cards", "instructions")]
 script = ExtResource("1_feb5d")
-autoplay_mode = true
 max_shinies = 100
 player_spawns_nodes = NodePath("PlayerSpawns")
 starting_shine_nodes = NodePath("StartingShineLocations")
@@ -65,6 +67,7 @@ flyover_player = NodePath("Flyover")
 intro_player = NodePath("IntroPlayer")
 start_button = NodePath("GameUI/StartButton")
 user_cards = NodePath("GameUI/Users/userCards")
+instructions = NodePath("GameUI/how to bet")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -372,6 +375,15 @@ layout_mode = 2
 
 [node name="User5" parent="GameUI/Users/userCards" instance=ExtResource("3_j5wjh")]
 layout_mode = 2
+
+[node name="how to bet" type="Label" parent="GameUI"]
+layout_mode = 0
+offset_left = 115.0
+offset_top = 87.0
+offset_right = 229.0
+offset_bottom = 100.0
+text = "!bet <money> <character>"
+label_settings = SubResource("LabelSettings_j5wjh")
 
 [node name="PlayerSpawns" type="Node2D" parent="."]
 

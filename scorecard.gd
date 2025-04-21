@@ -11,9 +11,13 @@ var alive : bool = true
 @export var back : TextureRect
 @export var alive_texture : Texture
 @export var dead_texture : Texture
+@export var command_label : Label
 
 func _process(delta: float) -> void:
 	
+	command_label.text = "!bet ___ " + str(id)
+	
+	command_label.visible = Twitch.game_node.state == Twitch.game_node.State.prep
 	
 	if alive:
 		back.texture = alive_texture

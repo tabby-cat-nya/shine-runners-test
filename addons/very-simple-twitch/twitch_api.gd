@@ -17,8 +17,8 @@ const TWITCH_CHATTERS_URL = "https://api.twitch.tv/helix/chat/chatters"
 var auth_server: VSTAuthServer
 
 var _scopes: PackedStringArray
-var _client_id: String
-var _user: VSTChannel
+static var _client_id: String
+static var _user: VSTChannel
 
 func initiate_twitch_auth():
 	_scopes = VSTSettings.get_setting(VSTSettings.settings.scopes)

@@ -9,6 +9,7 @@ func _ready() -> void:
 	VerySimpleTwitch.get_token_and_login_chat()
 	VerySimpleTwitch.chat_message_received.connect(handle_message)
 	game_node = get_node("/root/Game")
+	get_user_id("tabbyCatNya")
 	#test_save()
 	
 func _process(delta: float) -> void:
@@ -16,10 +17,12 @@ func _process(delta: float) -> void:
 	
 func handle_message(chatter: VSTChatter):
 	print("Message received from %s: %s" % [chatter.tags.display_name, chatter.message])
+	print(chatter.tags.user_id)
 	var found_player : bool = false
 	for player in save.player_database:
 		if(chatter.tags.user_id == player.user_id):
 			found_player = true
+			print("found " + player.username)
 			# do whatever we want for a found player
 			player.playing = true
 			var splits : PackedStringArray = chatter.message.split(" ")
@@ -37,6 +40,7 @@ func handle_message(chatter: VSTChatter):
 	game_node.load_userboard()
 
 func create_new_player(id : String, name : String) -> PlayerData:
+	print("creating a new player: " + name)
 	var player : PlayerData = PlayerData.new()
 	player.user_id = id
 	player.username = name
@@ -95,3 +99,31 @@ func test_save():
 	player3.money = 300
 	save.player_database.append(player3)
 	ResourceSaver.save(save, save_path)
+
+#func get_user_id(username : String, on_success : Callable):
+	#var body = {
+		#data = {
+			#login = username
+		#},
+	#}
+	#var vst = VSTNetwork_Call.new()
+	#vst.to("https://api.twitch.tv/helix/users")
+	##vst.add_all_get_params({
+		##'broadcaster_id': _user.id,
+		##'moderator_id': _user.id
+	##}).\
+	#vst.with(body)
+	#vst.verb(HTTPClient.METHOD_POST)
+	#vst.add_all_headers({
+		#'Client-Id: ' : VSTAPI._client_id,
+		#'Authorization': 'Bearer ' + VSTAPI._user.token,
+		#'Content-Type': 'application/json'
+	#})
+	#vst.set_on_call_success(on_success)
+	#vst.launch_request(self)
+#
+#func on_user_id_received(response : VSTNetwork_Call):
+	#print(response.body)
+	
+func get_user_id(username : String):
+	pass
