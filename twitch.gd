@@ -4,12 +4,15 @@ var save : Save
 var save_path : String = "C:\\Users\\Tabby\\Documents\\Godot\\Projects\\shine-runners-test\\data\\save.tres"
 var game_node : Node2D
 var current_winner : int = -1
+var web_request : HTTPRequest
 
 func _ready() -> void:
 	VerySimpleTwitch.get_token_and_login_chat()
 	VerySimpleTwitch.chat_message_received.connect(handle_message)
 	game_node = get_node("/root/Game")
-	get_user_id("tabbyCatNya")
+	web_request = HTTPRequest.new()
+	web_request.request_completed.connect(_on_user_id_received)
+	
 	#test_save()
 	
 func _process(delta: float) -> void:
@@ -17,10 +20,12 @@ func _process(delta: float) -> void:
 	
 func handle_message(chatter: VSTChatter):
 	print("Message received from %s: %s" % [chatter.tags.display_name, chatter.message])
-	print(chatter.tags.user_id)
+	#print(get_user_id(chatter.tags.display_name))
+	#get_user_id(chatter.tags.display_name)
 	var found_player : bool = false
 	for player in save.player_database:
-		if(chatter.tags.user_id == player.user_id):
+		#if(chatter.tags.user_id == player.user_id): #TODO make it user id based
+		if(chatter.tags.display_name == player.username):
 			found_player = true
 			print("found " + player.username)
 			# do whatever we want for a found player
@@ -126,4 +131,11 @@ func test_save():
 	#print(response.body)
 	
 func get_user_id(username : String):
-	pass
+	
+	var headers = ["'Client-Id: ' : "+ VSTAPI._client_id, "'Authorization': 'Bearer '" + VSTAPI._user.token,"'Content-Type': 'application/json'"]
+	web_request.request("https://api.twitch.tv/helix/users?" + username,headers)
+
+func _on_user_id_received(result, response_code, headers, body):
+	print("i exist?")
+	var json = JSON.parse_string(body.get_string_from_utf8())
+	print(response_code)

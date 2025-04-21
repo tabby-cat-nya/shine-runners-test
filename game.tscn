@@ -53,6 +53,7 @@ radius = 3.0
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("player_spawns_nodes", "starting_shine_nodes", "shine_nodes", "scorecard_container", "elim_timer_label", "game_timer_label", "chime_player", "music_player", "win_player", "flyover_player", "intro_player", "start_button", "user_cards", "instructions")]
 script = ExtResource("1_feb5d")
+autoplay_mode = true
 max_shinies = 100
 player_spawns_nodes = NodePath("PlayerSpawns")
 starting_shine_nodes = NodePath("StartingShineLocations")

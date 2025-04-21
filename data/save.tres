@@ -1,14 +1,20 @@
-[gd_resource type="Resource" script_class="Save" load_steps=4 format=3 uid="uid://domukcgxqbc77"]
+[gd_resource type="Resource" script_class="Save" load_steps=5 format=3]
 
-[ext_resource type="Script" uid="uid://dgn8nnp7mtgdm" path="res://twitch/player_data.gd" id="1"]
-[ext_resource type="Script" uid="uid://dx5cdskh1njoa" path="res://twitch/saveFile.gd" id="2"]
+[ext_resource type="Script" path="res://twitch/player_data.gd" id="1"]
+[ext_resource type="Script" path="res://twitch/saveFile.gd" id="2"]
 
 [sub_resource type="Resource" id="Resource_hxy0q"]
 script = ExtResource("1")
-money = 205
+money = 70
 user_id = "144628425"
 username = "tabbyCatNya"
 
+[sub_resource type="Resource" id="Resource_yphdo"]
+script = ExtResource("1")
+money = 155
+user_id = "144628425"
+username = "TwitchPlaysReverseJenga"
+
 [resource]
 script = ExtResource("2")
-player_database = Array[ExtResource("1")]([SubResource("Resource_hxy0q")])
+player_database = Array[ExtResource("1")]([SubResource("Resource_hxy0q"), SubResource("Resource_yphdo")])
